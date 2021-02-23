@@ -1,15 +1,24 @@
-var firebaseConfig = {
-  apiKey: "AIzaSyAC9ktn0vcPkK7w_NzJdzxJHUpn2TjpsAo",
-  authDomain: "we-kweet-fea48.firebaseapp.com",
-  projectId: "we-kweet-fea48",
-  storageBucket: "we-kweet-fea48.appspot.com",
-  messagingSenderId: "28088941586",
-  appId: "1:28088941586:web:12113e9fdd952b728a6ccb"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBm0ibXFE51K1VOju3gkPOfgNxXm3WuOxA",
+    authDomain: "tweeter-7efdb.firebaseapp.com",
+    projectId: "tweeter-7efdb",
+    storageBucket: "tweeter-7efdb.appspot.com",
+    messagingSenderId: "207659002971",
+    appId: "1:207659002971:web:658c68639ea784306fa37e"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
-
+  const firebaseConfig = {
+    apiKey: "AIzaSyBm0ibXFE51K1VOju3gkPOfgNxXm3WuOxA",
+    authDomain: "tweeter-7efdb.firebaseapp.com",
+    databaseURL: "https://tweeter-7efdb-default-rtdb.firebaseio.com",
+    projectId: "tweeter-7efdb",
+    storageBucket: "tweeter-7efdb.appspot.com",
+    messagingSenderId: "207659002971",
+    appId: "1:207659002971:web:658c68639ea784306fa37e"
+  };
 
 
 
@@ -32,11 +41,33 @@ function getData() { firebase.database().ref("/"+room_name).on('value', function
          firebase_message_id = childKey;
          message_data = childData;
 //Start code
+          console.log(firebase_message_id);
+          console.log(message_data);
+          name = message_data['name'];
+          message = message_data['message'];
+          like = message_data['like'];
+          name_with_tag = "<h4>"+"<img class = 'user_tick' src = 'tick.png'></h4>";
+          message_with_tag = "<h4 class='message_h4'>"+message+"</h4>";
+          like_button = "<button class = 'btn btn-warning' id="+firebase_message_id+" value="+Like+" onclick='updateLike(this.id)'>";
+          span_with_tag = "<span class= ' glyphicon glyphicon-thumbs-up'>Like:"+Like+"</span></button><hr>";
+
+          row = name_with_tag + message_with_tag + like_button + span_with_tag;
+          document.getElementById("output").innerHTML += row;
 
 //End code
       } });  }); }
 getData();
-
+function updateLike(message_id)
+{
+  console.log("clicked on like button - "+ message_id);
+  button_id = message_id;
+  likes = document.getElementById(button_id).value;
+  updated_likes = Number(likes)+1;
+  console.log(updated_likes);
+  firebase.database().ref(room_name).child(message_id).update({
+    like : updated_likes
+  })
+}
 function logout() {
 localStorage.removeItem("user_name");
 localStorage.removeItem("room_name");

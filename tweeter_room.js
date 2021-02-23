@@ -1,15 +1,24 @@
 
+  // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyAC9ktn0vcPkK7w_NzJdzxJHUpn2TjpsAo",
-    authDomain: "we-kweet-fea48.firebaseapp.com",
-    projectId: "we-kweet-fea48",
-    storageBucket: "we-kweet-fea48.appspot.com",
-    messagingSenderId: "28088941586",
-    appId: "1:28088941586:web:12113e9fdd952b728a6ccb"
+    apiKey: "AIzaSyBm0ibXFE51K1VOju3gkPOfgNxXm3WuOxA",
+    authDomain: "tweeter-7efdb.firebaseapp.com",
+    projectId: "tweeter-7efdb",
+    storageBucket: "tweeter-7efdb.appspot.com",
+    messagingSenderId: "207659002971",
+    appId: "1:207659002971:web:658c68639ea784306fa37e"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+  const firebaseConfig = {
+    apiKey: "AIzaSyBm0ibXFE51K1VOju3gkPOfgNxXm3WuOxA",
+    authDomain: "tweeter-7efdb.firebaseapp.com",
+    databaseURL: "https://tweeter-7efdb-default-rtdb.firebaseio.com",
+    projectId: "tweeter-7efdb",
+    storageBucket: "tweeter-7efdb.appspot.com",
+    messagingSenderId: "207659002971",
+    appId: "1:207659002971:web:658c68639ea784306fa37e"
+  };
 
 
 
@@ -27,7 +36,7 @@ function addRoom()
 
     localStorage.setItem("room_name", room_name);
     
-    window.location = "kwitter_page.html";
+    window.location = "tweeter_page.html";
 }
 
 function getData() {  firebase.database().ref("/").on('value', function(snapshot) { document.getElementById("output").innerHTML = ""; snapshot.forEach(function(childSnapshot) { childKey  = childSnapshot.key;
